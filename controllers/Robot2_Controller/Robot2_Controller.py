@@ -13,10 +13,15 @@ left_motor.setVelocity(0)
 right_motor.setVelocity(0)
 
 MOVES = [(0, 0.25), (0.25, 0), (0, -0.25), (-0.25, 0)]
-# GRID_SIZE = 4
 
-start = (-0.375, -0.375) 
-goal = (0.375, 0.125) 
+start = (-0.375, -0.125) 
+goal = (0.375, -0.125) 
+
+obstacles = {
+    (-0.125, 0.375),
+    (0.125, -0.125),
+    (-0.375, 0.125)
+}
 
 def heuristic(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
@@ -42,7 +47,7 @@ def a_star(start, goal):
 
         for dx, dy in MOVES:
             neighbor = (current[0] + dx, current[1] + dy)
-            if -0.5 <= neighbor[0] < 0.5 and -0.5 <= neighbor[1] < 0.5:
+            if -0.5 <= neighbor[0] < 0.5 and -0.5 <= neighbor[1] < 0.5 and neighbor not in obstacles:
                 temp_g = g_score[current] + 1
                 if neighbor not in g_score or temp_g < g_score[neighbor]:
                     came_from[neighbor] = current
@@ -58,7 +63,6 @@ def get_direction(from_pos, to_pos):
     dy = (to_pos[1] - from_pos[1])
     for dir, vec in DIRECTION_TO_VECTOR.items():
         if (dx, dy) == vec:
-            print(dir)
             return dir
     
     print(f"Unmatched direction: from {from_pos} to {to_pos} → ({dx}, {dy})")
@@ -96,16 +100,13 @@ def rotate_to_direction(target_direction):
     current_direction = target_direction
 
 def move_to_target(prev_grid, next_grid):
-    # target_position = grid_to_position(*next_grid)
 
     target_dir = get_direction(prev_grid, next_grid)
     rotate_to_direction(target_dir)
 
-    # Move forward
     left_motor.setVelocity(3.0)
     right_motor.setVelocity(3.0)
 
-    # Dummy movement delay (tune if using real sensors)
     steps = int(4.2 * 1000 / timestep)
     for _ in range(steps):
         robot.step(timestep)

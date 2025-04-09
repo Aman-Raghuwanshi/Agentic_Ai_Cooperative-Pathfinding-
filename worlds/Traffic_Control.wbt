@@ -4,12 +4,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
 
 WorldInfo {
 }
 Viewpoint {
   orientation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.0943245915045035
-  position 0.00045671645796380124 -0.00013108389319650896 3.562457003829602
+  position 0.0004645260912862283 -0.0001232745777937201 3.370622712471971
 }
 TexturedBackground {
 }
@@ -17,26 +18,70 @@ TexturedBackgroundLight {
 }
 RectangleArena {
 }
+SolidBox {
+  translation -0.125 0.375 0
+  size 0.25 0.25 0.1
+  appearance PBRAppearance {
+    baseColor 0 0 0
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/tagged_wall.jpg"
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+}
+SolidBox {
+  translation 0.125 -0.125 0
+  name "box(1)"
+  size 0.25 0.25 0.1
+  appearance PBRAppearance {
+    baseColor 0 0 0
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/tagged_wall.jpg"
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+}
+SolidBox {
+  translation -0.375 0.125 0
+  name "box(2)"
+  size 0.25 0.25 0.1
+  appearance PBRAppearance {
+    baseColor 0 0 0
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/tagged_wall.jpg"
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+}
 E-puck {
-  hidden position_0_0 29410.51104558864
-  hidden position_0_1 29779.439553130083
-  hidden rotation_1 0 1 0 5.203807988174096
-  hidden rotation_2 0 -1 0 2.8588029011565324
-  translation -0.375 -0.125 0
-  controller "Robot1_Controller"
+  hidden position_0_0 29473.342760486295
+  hidden position_0_1 29842.27126892879
+  hidden rotation_1 0 1 0 5.20366981403487
+  hidden rotation_2 0 -1 0 2.8589401742448057
+  translation -0.37489092757817927 -0.3749140139629586 -6.477499552095395e-05
+  controller "Main_Controller"
   controllerArgs [
-    ""
+    "ROBOT_ID=1"
   ]
 }
 E-puck {
-  hidden position_0_0 30010.10323774992
-  hidden position_0_1 30358.71464264753
-  hidden rotation_1 0 1 0 1.6102106602163768
-  hidden rotation_2 0 -1 0 1.6367616442317299
-  translation -0.375 -0.375 0
+  hidden position_0_0 30058.163006835595
+  hidden position_0_1 30411.18559252644
+  hidden rotation_1 0 -1 0 0.5955027115464082
+  hidden rotation_2 0 1 0 0.5687057772404469
+  translation -0.3748037609755739 -0.1249988906740054 -6.39619957877955e-05
   name "e-puck(1)"
-  controller "Robot2_Controller"
+  controller "Main_Controller"
   controllerArgs [
-    ""
+    "ROBOT_ID=2"
   ]
 }
